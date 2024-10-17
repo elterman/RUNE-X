@@ -7,7 +7,7 @@ export const runeInit = (rg) => {
 
     rg.mode = null;
     rg.players = [{ page: START_PAGE }, { page: START_PAGE }];
-    dg.board_update = {
+    rg.board_update = {
         boards: { '00': {}, '01': {}, '10': {}, '20': {}, '30': {} }
     };
 
@@ -26,19 +26,19 @@ Rune.initLogic({
         playerLeft: (pid, { game: rg }) => { runeInit(rg); },
     },
     actions: {
-        boardUpdate: ({ size, skill, over, turn, scores, force_event }, { game: rg }) => {
+        boardUpdate: ({ size, skill, turn, scores, force_event }, { game: rg }) => {
             rg.board_update.size = size;
             rg.board_update.skill = skill;
-            rg.board_update.boards[`${size}${skill}`] = { cells, assigned, cleared, extended_by, color_pick, turn, scores, winner, force_event };
+            rg.board_update.boards[`${size}${skill}`] = { turn, scores, force_event };
         },
         init: (_, { game: rg }) => runeInit(rg),
-        persist: (data, { game: ra, playerId: pid }) => {
-            const pdata = ra.persisted[pid];
+        persist: (data, { game: rg, playerId: pid }) => {
+            const pdata = rg.persisted[pid];
             pdata.version = 1;
             pdata.switch_tip = data.switch_tip;
             pdata.stats = data.stats;
         },
-        playerPage: ({ player, page }, { game: ra }) => (ra.players[player - 1].page = page),
+        playerPage: ({ player, page }, { game: rg }) => (rg.players[player - 1].page = page),
         switchPlayer: (player, { game: rg }) => (rg.switchPlayer = player),
     },
 });

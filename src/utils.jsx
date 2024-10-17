@@ -75,9 +75,9 @@ export const runeAction = (action, arg) => {
 };
 
 export const raBoardUpdate = props => {
-    let { size, skill, over, turn, scores, force_event } = props;
+    let { size, skill, turn, scores, force_event } = props;
 
     defer(() => runeAction(RA_BOARD_UPDATE, {
-        size, skill, over, turn, scores, force_event
+        size, skill, turn, scores, force_event
     }));
 };
