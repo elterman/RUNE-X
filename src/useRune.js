@@ -1,20 +1,20 @@
 import { useAtom } from 'jotai';
 import _ from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { a_alert, a_app_state, a_dusk_game, a_my_pid, a_my_player, a_page, a_pids, a_size, a_skill, a_turn } from './atoms';
+import { a_alert, a_app_state, a_rune_game, a_my_pid, a_my_player, a_page, a_pids, a_size, a_skill, a_turn } from './atoms';
 import { GAME_PAGE, PLAYER_JOINED, PLAYER_LEFT, START_PAGE } from './const';
 import { RA_BOARD_UPDATE, RA_INIT, RA_PERSIST, RA_PLAYER_PAGE, RA_STARTED, RA_SWITCH_PLAYER } from './logic';
 import useGameState from './useGameState';
 import useLang, { S_NEW_GAME, S_OPP_JOINED, S_OPP_LEFT, S_PLAYER_RESTARTED } from './useLang';
 import usePlaySound from './usePlaySound';
-import { defer, duskAction } from './utils';
+import { defer, runeAction } from './utils';
 
 const useRune = () => {
     const [appState, setAppState] = useAtom(a_app_state);
     const [myPlayer, setMyPlayer] = useAtom(a_my_player);
     const [pids, setPlayerIds] = useAtom(a_pids);
     const [myPlayerId] = useAtom(a_my_pid);
-    const [rg, setRuneGameState] = useAtom(a_dusk_game);
+    const [rg, setRuneGameState] = useAtom(a_rune_game);
     const [runeChange, setRuneChange] = useState(null);
     const [next, setNext] = useState(false);
     const [backToStart, setBackToStart] = useState(false);
@@ -58,7 +58,7 @@ const useRune = () => {
 
         if (page !== START_PAGE) {
             if (myPlayerId) {
-                defer(() => duskAction(RA_INIT));
+                defer(() => runeAction(RA_INIT));
             }
 
             setBackToStart(true);
@@ -185,7 +185,7 @@ const useRune = () => {
         const rg = _.cloneDeep(game);
 
         if (!rg.started && yourPlayerId) {
-            defer(() => duskAction(RA_STARTED));
+            defer(() => runeAction(RA_STARTED));
         }
 
         if (allPlayerIds.length === 1) {

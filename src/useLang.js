@@ -1,9 +1,9 @@
 import { useAtom } from 'jotai';
 import { a_lang } from './atoms';
-import SwitchTip from './IMG/Switch Tip.webp';
-import SwitchTipES from './IMG/Switch Tip ES.webp';
-import SwitchTipPT from './IMG/Switch Tip PT.webp';
-import SwitchTipRU from './IMG/Switch Tip RU.webp';
+import SwitchTip from './Images/Switch Tip.webp';
+import SwitchTipES from './Images/Switch Tip ES.webp';
+import SwitchTipPT from './Images/Switch Tip PT.webp';
+import SwitchTipRU from './Images/Switch Tip RU.webp';
 
 export const EN = 'en';
 export const ES = 'es';

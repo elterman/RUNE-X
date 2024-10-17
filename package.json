@@ -11,7 +11,7 @@
     "lint": "eslint --max-warnings 0 src"
   },
   "dependencies": {
-    "rune-sdk": "^4.24.0",
+    "rune-sdk": "^4.24.1",
     "framer-motion": "^11.0.3",
     "jotai": "^2.6.4",
     "react": "^18.2.0",

@@ -1,6 +1,9 @@
 import { atom } from 'jotai';
+import _ from 'lodash';
+import { GAME_PAGE, START_PAGE } from './const';
 import { RA_PLAYER_PAGE } from './logic';
-import { runeAction } from './utils';
+import { S_OPP_JOINED, S_OPP_LEFT } from './useLang';
+import { defer, runeAction } from './utils';
 
 export const a_app_state = atom({ states: {} });
 export const a_rune_game = atom({});
@@ -124,7 +127,7 @@ export const a_scores = atom(
 
 export const a_opp_ready = atom(get => {
     const myPlayer = get(a_my_player);
-    const rg = get(a_dusk_game);
+    const rg = get(a_rune_game);
     const solo = get(a_solo);
 
     if (!myPlayer) {

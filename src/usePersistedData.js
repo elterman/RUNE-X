@@ -1,11 +1,11 @@
 import { useAtom } from 'jotai';
 import _ from 'lodash';
-import { a_app_state, a_dusk_game, a_pids, a_my_pid } from './atoms';
+import { a_app_state, a_rune_game, a_pids, a_my_pid } from './atoms';
 import { RA_PERSIST } from './logic';
 import { runeAction } from './utils';
 
 const usePersistedData = () => {
-    const [rg, setRuneGame] = useAtom(a_dusk_game);
+    const [rg, setRuneGame] = useAtom(a_rune_game);
     const [appState] = useAtom(a_app_state);
     const [pids] = useAtom(a_pids);
     const [pid] = useAtom(a_my_pid);
