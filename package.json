@@ -1,0 +1,32 @@
+{
+  "name": "x",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "upload": "npm run build && npx rune-games-cli@latest upload",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint --max-warnings 0 src"
+  },
+  "dependencies": {
+    "rune-sdk": "^4.24.0",
+    "framer-motion": "^11.0.3",
+    "jotai": "^2.6.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "use-sound": "^4.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.7.0",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-react-app": "^7.0.1",
+    "vite": "^4.3.2",
+    "vite-plugin-qrcode": "^0.2.2"
+  }
+}
