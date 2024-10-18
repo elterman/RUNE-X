@@ -42,35 +42,37 @@ const App = () => {
         }, 0);
     }
 
+    const gridArea = '1/1';
+
     const renderContent = () => {
         const bmgWidth = Math.min(300, Math.min(wx, wy) * 0.6);
 
         if (splash) {
-            return <>
+            return <div style={{ gridArea }}>
                 <motion.div className="splash" animate={{ opacity: starting ? 1 : 0 }}>
                     <img src={BMG} alt="BMG" width={bmgWidth} />
                 </motion.div>
-            </>;
+            </div>;
         }
 
         if (starting) {
             return null;
         }
 
-        return <>
+        return <div style={{ gridArea, display: 'grid' }}>
             {page === START_PAGE ? <StartPage /> : null}
             {page === GAME_PAGE ? <GamePage /> : null}
             {page === HELP_PAGE ? <HelpPage /> : null}
-        </>;
+        </div>;
     };
 
-    const { image: backgroundImage, size: backgroundSize, gradient } = appBackground();
+    const { image: backgroundImage, size: backgroundSize, opacity, gradient } = appBackground();
 
-    return <div id='app' className="App" style={{ backgroundImage, backgroundSize }} >
-        <div id='app-bg-gradient' style={{ display: 'grid', backgroundImage: gradient }}>
-            {renderContent()}
-            {starting && <Preloader />}
-        </div>
+    return <div id='app' className="App">
+        <div id='app-bg' style={{ display: 'grid', gridArea, backgroundImage, backgroundSize, opacity }} />
+        <div id='app-bg-gradient' style={{ display: 'grid', gridArea, backgroundImage: gradient }} />
+        {renderContent()}
+        {starting && <Preloader />}
     </div>;
 };
 

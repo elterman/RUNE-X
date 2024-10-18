@@ -42,13 +42,29 @@
 .start-page {
   grid-area: 1/1;
   display: grid;
-  justify-content: center;
+  place-content: center;
+  justify-items: center;
 }
 
 .help-page {
   grid-area: 1/1;
+  place-self: stretch;
   display: grid;
-  justify-content: center;
+  grid: 1fr auto / auto;
+  opacity: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.help-content {
+  max-width: 400px;
+  padding: 18px;
+  font-family: Roboto Condensed;
+  color: #ffffffd0;
+  filter: drop-shadow(2px 2px 2px #000);
+  display: grid;
+  gap: 15px;
+  place-self: center;
 }
 
 .game-page {
@@ -170,4 +186,14 @@
 .switch-tip-tap {
   align-self: end;
   height: 75px;
+}
+
+.toolbar {
+  grid-area: 4/1;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+  place-self: end center;
+  place-content: center;
+  align-items: center;
 }
