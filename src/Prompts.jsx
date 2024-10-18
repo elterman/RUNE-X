@@ -1,17 +1,18 @@
 import { useAtom } from 'jotai';
 import PromptPanel from './Prompt Panel';
-import { a_alert, a_best_solo_score, a_my_player, a_opp_alert, a_opp_ready, a_reset_stats, a_restart, a_size, a_skill, a_solo, a_spectator, a_state_key, a_stats, a_winner } from './atoms';
-import { BLUE, GREEN, PURPLE, X } from './const';
+import { a_alert, a_best_solo_score, a_my_player, a_opp_alert, a_opp_ready, a_reset_stats, a_resize, a_restart, a_size, a_skill, a_solo, a_spectator, a_state_key, a_stats, a_winner } from './atoms';
+import { BLUE, GREEN, PURPLE, SIZES, X } from './const';
 import useGameState from './useGameState';
 import useLang, { S_BEST_SCORE, S_ITS_DRAW, S_ITS_OVER, S_NEW_GAME, S_PLAY_AGAIN, S_PLAYER_RESTARTED, S_RESET_STATS, S_START_OVER, S_SURRENDER, S_YOU_LOST, S_YOU_WON } from './useLang';
 import usePersistedData from './usePersistedData';
 import usePlaySound from './usePlaySound';
 import { defer } from './utils';
 
-const Propmts = () => {
+const Prompts = () => {
     const [solo] = useAtom(a_solo);
     const [restart, setRestart] = useAtom(a_restart);
-    const [size] = useAtom(a_size);
+    const [resize, setResize] = useAtom(a_resize);
+    const [size, setSize] = useAtom(a_size);
     const [skill] = useAtom(a_skill);
     const [resetStats, setResetStats] = useAtom(a_reset_stats);
     const [alert] = useAtom(a_alert);
@@ -25,7 +26,7 @@ const Propmts = () => {
     const [winner] = useAtom(a_winner);
     const [stateKey] = useAtom(a_state_key);
     const playSound = usePlaySound();
-    const { startOver } = useGameState();
+    const { startOver, onSizeOrSkillSelected } = useGameState();
     const { str } = useLang();
 
     const over = false; // TODO
@@ -59,6 +60,20 @@ const Propmts = () => {
             }
         } else {
             dismiss(true);
+        }
+    };
+
+    const onResize = (op) => {
+        playSound('tap');
+        setResize(false);
+
+        if (op !== size) {
+            setSize(op);
+            const startedOver = onSizeOrSkillSelected(op);
+
+            if (startedOver) {
+                playSound('dice');
+            }
         }
     };
 
@@ -100,7 +115,8 @@ const Propmts = () => {
     const background = `-webkit-linear-gradient(-90deg, #FFFFFF -200%, ${color} 75%, #FFFFFF 400%)`;
     const alertPanelStyle = { marginTop: 0 };
     const alertButtonStyle = { color: 'white', pointerEvents: 'none', height: '36px', padding: '20px' };
-    const showOver = over && !oppAlert && !resetStats;
+    const resizeStyle = { fontSize: '28px', width: 50, height: 50, borderRadius: '50%' };
+    const showOver = over && !oppAlert && !resetStats && !resize;
     const pointerEvents = myPlayer ? 'all' : 'none';
 
     return <>
@@ -109,9 +125,10 @@ const Propmts = () => {
         <PromptPanel labels={[str(solo ? S_START_OVER : S_SURRENDER), X]} onClick={onResponse} show={restart && !resetStats && !oppAlert} />
         <PromptPanel labels={[str(S_RESET_STATS), X]} onClick={onResponse} show={resetStats} />
         <PromptPanel labels={[str(`${spectator ? `Player${solo ? '' : 's'}` : 'Opponent'} not ready.`)]}
-            show={!oppReady && !oppAlert && !restart && (!over || spectator)} />
-        <PromptPanel labels={[str(alert)]} show={!!alert && !oppAlert} style={alertPanelStyle} buttonStyle={alertButtonStyle} />
+            show={!oppReady && !oppAlert && !restart && !resize && (!over || spectator)} />
+        <PromptPanel labels={[str(alert)]} show={!!alert} style={alertPanelStyle} buttonStyle={alertButtonStyle} />
+        <PromptPanel labels={SIZES} onClick={onResize} show={resize && !oppAlert} buttonStyle={resizeStyle} />
     </>;
 };
 
-export default Propmts;
+export default Prompts;

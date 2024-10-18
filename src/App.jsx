@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { a_lang, a_overlay, a_page } from './atoms';
 import { appBackground } from './appBackground.jsx';
-import { GAME_PAGE, HELP_PAGE, START_PAGE } from './const.js';
+import { _11, GAME_PAGE, HELP_PAGE, START_PAGE } from './const.js';
 import GamePage from './Game Page.jsx';
 import HelpPage from './Help Page.jsx';
 import BMG from './Images/BMG.webp';
@@ -43,7 +43,7 @@ const App = () => {
         }, 0);
     }
 
-    const gridArea = '1/1';
+    const gridArea = _11;
 
     const renderContent = () => {
         const bmgWidth = Math.min(300, Math.min(wx, wy) * 0.6);

@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import usePlaySound from './usePlaySound';
+import { _11 } from './const';
 
 const ToolButton = (props) => {
     const { width = 44, img, label, disabled = false, style, onClick, href } = props;
     const [scale, setScale] = useState(1);
     const playSound = usePlaySound();
 
-    const gridArea = '1/1';
     const pointerEvents = disabled || (!onClick && !href) ? 'none' : 'auto';
 
     const onAnimationComplete = () => {
@@ -23,7 +23,7 @@ const ToolButton = (props) => {
     };
 
     const renderIcon = () => {
-        const style = { gridArea, zIndex: 1, display: 'grid', opacity: disabled ? 0.5 : 1 };
+        const style = { gridArea: _11, zIndex: 1, display: 'grid', opacity: disabled ? 0.5 : 1 };
 
         if (href) {
             return <a href={href} target="_blank" rel="noopener noreferrer" style={style}>

@@ -47,8 +47,8 @@ const useRune = () => {
     }, [appState.sounds, appState.states, backToStart, setAlert, setAppState, setPage, setSize, setSkill]);
 
     const onOppEvent = useCallback(() => {
-        const de = runeChange?.name;
-        const msg = de === PLAYER_JOINED ? S_OPP_JOINED : de === PLAYER_LEFT ? S_OPP_LEFT : null;
+        const re = runeChange?.name;
+        const msg = re === PLAYER_JOINED ? S_OPP_JOINED : re === PLAYER_LEFT ? S_OPP_LEFT : null;
 
         if (!msg) {
             return false;
@@ -61,7 +61,7 @@ const useRune = () => {
                 defer(() => runeAction(RA_INIT));
             }
 
-            setBackToStart(true);
+            defer(() => setBackToStart(true), 2000);
         }
 
         return true;
@@ -119,9 +119,9 @@ const useRune = () => {
             return;
         }
 
-        const { da, gob } = l.queue.shift();
+        const { ra, gob } = l.queue.shift();
 
-        switch (da) {
+        switch (ra) {
             case RA_BOARD_UPDATE:
                 onBoardUpdate(gob);
                 break;
@@ -146,14 +146,14 @@ const useRune = () => {
         }
 
         const action = runeChange;
-        const da = action?.name;
+        const ra = action?.name;
         const gob = _.cloneDeep(rg);
 
-        if (da === RA_STARTED || da === RA_PERSIST) {
+        if (ra === RA_STARTED || ra === RA_PERSIST) {
             return;
         }
 
-        if (da === RA_BOARD_UPDATE) {
+        if (ra === RA_BOARD_UPDATE) {
             // console.log({ 'gob size': JSON.stringify(gob).length });
 
             if (l.page !== GAME_PAGE) {
@@ -168,12 +168,12 @@ const useRune = () => {
             }
         }
 
-        if (da === RA_SWITCH_PLAYER) {
+        if (ra === RA_SWITCH_PLAYER) {
             onSwitchPlayer(gob);
             return;
         }
 
-        const len = l.queue.push({ da, gob, time: Date.now() });
+        const len = l.queue.push({ ra, gob, time: Date.now() });
 
         if (len === 1) {
             doSetNext();
@@ -208,11 +208,11 @@ const useRune = () => {
             return;
         }
 
-        const de = event?.name;
+        const re = event?.name;
 
-        if (action || de === PLAYER_JOINED || de === PLAYER_LEFT) {
+        if (action || re === PLAYER_JOINED || re === PLAYER_LEFT) {
             defer(() => setRuneChange(action || event));
-        } else if (de === 'stateSync' && !rg.started) {
+        } else if (re === 'stateSync' && !rg.started) {
             setBackToStart('init');
         }
     };

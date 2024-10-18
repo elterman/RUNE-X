@@ -18,6 +18,7 @@ export const a_lang = atom(null);
 
 const a_page_base = atom(START_PAGE);
 const a_restart_base = atom(null);
+const a_resize_base = atom(false);
 const a_reset_stats_base = atom(false);
 const a_alert_base = atom(null);
 const a_overlay_base = atom(null);
@@ -49,7 +50,8 @@ export const a_alert = atom(
         set(a_alert_base, alert);
         set(a_overlay, null);
         set(a_restart, false);
-        set(a_reset_stats, false);
+            set(a_resize, false);
+            set(a_reset_stats, false);
 
         if (alert && duration) {
             defer(() => set(a_alert_base, null), duration);
@@ -80,11 +82,23 @@ export const a_restart = atom(
         set(a_restart_base, on);
 
         if (on) {
+            set(a_resize, false);
             set(a_reset_stats, false);
         }
     }
 );
 
+export const a_resize = atom(
+    get => get(a_resize_base),
+    (get, set, on) => {
+        set(a_resize_base, on);
+
+        if (on) {
+            set(a_restart, false);
+            set(a_reset_stats, false);
+        }
+    }
+);
 export const a_reset_stats = atom(
     get => get(a_reset_stats_base),
     (get, set, on) => {
@@ -92,6 +106,7 @@ export const a_reset_stats = atom(
 
         if (on) {
             set(a_restart, false);
+            set(a_resize, false);
         }
     }
 );
@@ -103,6 +118,7 @@ export const a_overlay = atom(
 
         if (page) {
             set(a_restart, false);
+            set(a_resize, false);
             set(a_reset_stats, false);
         }
     }
@@ -123,6 +139,11 @@ export const a_turn = atom(
 export const a_scores = atom(
     get => get(a_state).scores || [0, 0],
     (get, set, scores) => set(a_state, { ...get(a_state), scores })
+);
+
+export const a_winner = atom(
+    get => get(a_state).winner,
+    (get, set, winner) => set(a_state, { ...get(a_state), winner })
 );
 
 export const a_opp_ready = atom(get => {
