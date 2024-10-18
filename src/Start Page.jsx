@@ -1,5 +1,5 @@
 const StartPage = () => {
-    return <div>GAME PAGE</div>;
+    return <div className='start-page'>START PAGE</div>;
 };
 
 export default StartPage;

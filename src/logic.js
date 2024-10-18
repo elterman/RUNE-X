@@ -39,6 +39,7 @@ Rune.initLogic({
             pdata.stats = data.stats;
         },
         playerPage: ({ player, page }, { game: rg }) => (rg.players[player - 1].page = page),
+        started: (_, { game: rg }) => (rg.started = true),
         switchPlayer: (player, { game: rg }) => (rg.switchPlayer = player),
     },
 });
@@ -47,4 +48,5 @@ export const RA_BOARD_UPDATE = 'boardUpdate';
 export const RA_INIT = 'init';
 export const RA_PERSIST = 'persist';
 export const RA_PLAYER_PAGE = 'playerPage';
-export const DA_SWITCH_PLAYER = 'switchPlayer';
+export const RA_STARTED = 'started';
+export const RA_SWITCH_PLAYER = 'switchPlayer';

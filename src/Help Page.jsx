@@ -1,5 +1,5 @@
 const HelpPage = () => {
-    return <div>GAME PAGE</div>;
+    return <div>HELP PAGE</div>;
 };
 
 export default HelpPage;

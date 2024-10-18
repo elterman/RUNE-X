@@ -41,7 +41,7 @@ const useRune = () => {
                 setAppState({ sounds: appState.sounds, states: {} });
             } else {
                 const states = appState.states;
-                setAppState({ sounds: appState.sounds, states: { '00': states['00'], '01': states['01'] } });
+                setAppState({ states: { '00': states['00'], '01': states['01'] } });
             }
         }
     }, [appState.sounds, appState.states, backToStart, setAlert, setAppState, setPage, setSize, setSkill]);

@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import './App.css';
 import { a_lang, a_page } from './atoms';
-import { appBackground } from './Background';
+import { appBackground } from './appBackground.jsx';
 import { GAME_PAGE, HELP_PAGE, START_PAGE } from './const.js';
 import GamePage from './Game Page.jsx';
 import HelpPage from './Help Page.jsx';
@@ -64,12 +64,13 @@ const App = () => {
         </>;
     };
 
-    const backgroundImage = appBackground();
-    const sz = 520;
+    const { image: backgroundImage, size: backgroundSize, gradient } = appBackground();
 
-    return <div id='app' className="App" style={{ backgroundImage, backgroundSize: `${sz}px ${sz}px` }} >
-        {renderContent()}
-        {starting && <Preloader />}
+    return <div id='app' className="App" style={{ backgroundImage, backgroundSize }} >
+        <div id='app-bg-gradient' style={{ display: 'grid', backgroundImage: gradient }}>
+            {renderContent()}
+            {starting && <Preloader />}
+        </div>
     </div>;
 };
 

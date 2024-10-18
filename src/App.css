@@ -1,14 +1,13 @@
 .App {
   display: grid;
-  justify-content: center;
   height: 100%;
   width: 100%;
-  font-family: Jungle Adventurer;
+  font-family: Roboto Condensed;
   font-size: 18px;
   user-select: none;
   -webkit-tap-highlight-color: #0000;
   color: #fff;
-  background: #000000;
+  background: #345678;
   box-sizing: border-box;
 }
 
@@ -40,20 +39,26 @@
   font-family: Roboto Condensed;
 }
 
-.gradient-green {
-  background: -webkit-linear-gradient(-90deg, #fff -100%, #56bf8b 60%);
+.start-page {
+  grid-area: 1/1;
+  display: grid;
+  justify-content: center;
 }
 
-.gradient-pink {
-  background: -webkit-linear-gradient(-90deg, #fff -100%, #bd55bd 60%);
+.help-page {
+  grid-area: 1/1;
+  display: grid;
+  justify-content: center;
 }
 
-.gradient-yellow {
-  background: -webkit-linear-gradient(-90deg, #fff -100%, #ffcc0b 60%);
+.game-page {
+  grid-area: 1/1;
+  display: grid;
+  justify-content: center;
 }
 
-.gradient-blue {
-  background: -webkit-linear-gradient(-90deg, #fff -100%, #1565c0 60%);
+.gradient-gold {
+  background: -webkit-linear-gradient(-90deg, #fff -100%, #FFE4AD 60%);
 }
 
 .gradient-text {
