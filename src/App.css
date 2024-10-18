@@ -171,7 +171,7 @@
   display: grid;
   place-content: center;
   color: white;
-  background: -webkit-linear-gradient(-90deg, #fff -400%, #1565c0c0 100%);
+  background: -webkit-linear-gradient(-90deg, #fff -400%, #345678c0 100%);
   box-sizing: border-box;
   text-shadow: 2px 2px 2px #000;
   border: 2px solid white;
