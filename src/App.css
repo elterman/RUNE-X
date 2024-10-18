@@ -197,3 +197,11 @@
   place-content: center;
   align-items: center;
 }
+
+.tool-button {
+  display: grid;
+  cursor: pointer;
+  align-items: center;
+  gap: 15px;
+  justify-content: start;
+}

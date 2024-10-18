@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import './App.css';
-import { a_lang, a_page } from './atoms';
+import { a_lang, a_overlay, a_page } from './atoms';
 import { appBackground } from './appBackground.jsx';
 import { GAME_PAGE, HELP_PAGE, START_PAGE } from './const.js';
 import GamePage from './Game Page.jsx';
@@ -20,6 +20,7 @@ const App = () => {
     const [page] = useAtom(a_page);
     const { onChange } = useRune();
     const [language, setLanguage] = useAtom(a_lang);
+    const [overlay] = useAtom(a_overlay);
 
     useEffect(() => {
         if (language) {
@@ -59,10 +60,20 @@ const App = () => {
             return null;
         }
 
+        const renderOverlay = () => {
+            switch (overlay) {
+                case HELP_PAGE: return <HelpPage />;
+                default: return null;
+            }
+        };
+
         return <div style={{ gridArea, display: 'grid' }}>
             {page === START_PAGE ? <StartPage /> : null}
-            {page === GAME_PAGE ? <GamePage /> : null}
             {page === HELP_PAGE ? <HelpPage /> : null}
+            {page === GAME_PAGE ? <>
+                <GamePage />
+                {overlay && renderOverlay()}
+            </> : null}
         </div>;
     };
 
