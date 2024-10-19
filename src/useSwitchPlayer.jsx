@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { a_cleared, a_my_player, a_solo, a_turn } from './atoms';
+import { a_my_player, a_solo, a_turn } from './atoms';
 import { RA_SWITCH_PLAYER } from './logic';
 import usePersistedData from './usePersistedData';
 import usePlaySound from './usePlaySound';
@@ -13,7 +13,7 @@ export const useSwitchPlayer = () => {
     const { hideSwitchTip } = usePersistedData();
 
     const canSwitchPlayer = () => {
-        if (!myPlayer || myPlayer !== turn || cleared) {
+        if (!myPlayer || myPlayer !== turn) {
             return false;
         }
 

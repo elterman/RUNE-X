@@ -146,6 +146,11 @@ export const a_winner = atom(
     (get, set, winner) => set(a_state, { ...get(a_state), winner })
 );
 
+export const a_over = atom(
+    get => get(a_state).over || false,
+    (get, set, over) => set(a_state, { ...get(a_state), over })
+);
+
 export const a_opp_ready = atom(get => {
     const myPlayer = get(a_my_player);
     const rg = get(a_rune_game);

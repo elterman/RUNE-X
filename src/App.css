@@ -86,6 +86,34 @@
   -webkit-text-fill-color: transparent;
 }
 
+.scoreboard {
+  grid-area: 2/1;
+  display: grid;
+  grid: auto / auto 1fr auto 1fr auto;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 17px;
+}
+
+.score-panel {
+  display: grid;
+  place-items: center;
+}
+
+.score {
+  display: grid;
+  place-content: center;
+  width: 1em;
+  text-shadow: 2px 2px 2px black;
+  font-family: Radhiumz;
+  font-size: 22px;
+}
+
+.pie-panel {
+  display: grid;
+  place-items: center;
+}
+
 .avatar {
   grid-area: 1/1;
   display: grid;
@@ -100,6 +128,7 @@
 .player-name {
   grid-area: 1/1;
   align-self: end;
+  font-family: Roboto Condensed;
   font-size: 11px;
   display: grid;
   place-content: center;
@@ -119,13 +148,16 @@
   display: grid;
   place-items: center;
   z-index: 1;
+  background: linear-gradient(180deg, #56BF8B, #468235 50%);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
 }
 
 .you-label {
   grid-area: 1/1;
   font-family: Roboto Condensed;
   font-size: 9px;
-  z-index: 1;
 }
 
 .glasses {
