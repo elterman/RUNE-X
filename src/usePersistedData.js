@@ -44,7 +44,7 @@ const usePersistedData = () => {
         return found;
     };
 
-    return { persistedData: data, switchTip, getStats, updateStats, haveStats };
+    return { persistedData: data, switchTip, hideSwitchTip, getStats, updateStats, haveStats };
 };
 
 export default usePersistedData;
