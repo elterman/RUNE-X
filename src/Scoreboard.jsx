@@ -14,11 +14,11 @@ const Scoreboard = () => {
     const s2 = swap ? score1 : score2;
 
     return <div className="scoreboard">
-        <Player player={1} />
-        <div className='score' style={{ color: COLOR1 }}>{s1}</div>
-        <div></div>
-        <div className='score' style={{ color: COLOR2 }}>{s2}</div>
-        {<Player player={2} />}
+        <Player player={1} style={{ gridArea: '1/1' }} />
+        <div className='score' style={{ color: COLOR1, gridArea: '1/2' }}>{s1}</div>
+        {/* <div></div> */}
+        <div className='score' style={{ color: COLOR2, gridArea: '1/4' }}>{s2}</div>
+        {<Player player={2} style={{ gridArea: '1/5' }} />}
     </div>;
 };
 

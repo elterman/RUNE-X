@@ -2,14 +2,13 @@ import { motion } from 'framer-motion';
 import { useAtom } from 'jotai';
 import Avatar from './Images/Avatar.webp';
 import Glasses from './Images/Glasses.webp';
-import ToolButton from './Tool Button';
 import { a_alert, a_my_player, a_over, a_solo, a_turn } from './atoms';
 import { _11 } from './const';
 import useLang from './useLang';
 import useRune from './useRune';
 import { useSwitchPlayer } from './useSwitchPlayer';
 
-const Player = ({ player }) => {
+const Player = ({ player, style }) => {
     const [turn] = useAtom(a_turn);
     const [solo] = useAtom(a_solo);
     const [alert] = useAtom(a_alert);
@@ -61,7 +60,7 @@ const Player = ({ player }) => {
     const pointerEvents = canClick ? 'auto' : 'none';
     const cursor = canClick ? 'pointer' : 'initial';
 
-    return <div className='player' style={{ pointerEvents, cursor }} onClick={switchPlayer}>
+    return <div className='player' style={{ pointerEvents, cursor, ...style }} onClick={switchPlayer}>
         {spin && <motion.div style={{ gridArea }} animate={animate} transition={transition}>{renderAvatar()}</motion.div>}
         {!spin && renderAvatar()}
         {renderName()}
