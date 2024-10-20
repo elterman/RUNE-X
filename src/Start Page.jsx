@@ -21,8 +21,10 @@ const StartPage = () => {
 
     return <motion.div className='start-page' initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <img src={Title} alt='' width='90%' />
-        <AnimatedButton img={Play} width={120} onClick={onPlay} />
-        <AnimatedButton img={Help} width={150} onClick={onHelp} />
+        <div className='start-options'>
+            <AnimatedButton img={Play} width={120} onClick={onPlay} />
+            <AnimatedButton img={Help} width={150} onClick={onHelp} />
+        </div>
     </motion.div>;
 };
 

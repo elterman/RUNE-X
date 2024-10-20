@@ -52,6 +52,13 @@
   justify-items: center;
 }
 
+.start-options {
+  margin: 100px 0;
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+}
+
 .help-page {
   grid-area: 1/1;
   place-self: stretch;
