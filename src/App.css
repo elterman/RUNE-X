@@ -92,6 +92,25 @@
   -webkit-text-fill-color: transparent;
 }
 
+.stats-panel {
+  grid-area: 1/1;
+  place-self: start center;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 15px;
+  align-items: center;
+  font-size: 16px;
+}
+
+.stats-panel-label {
+  color: #b0b0b0;
+}
+
+.stats-panel-value {
+  filter: drop-shadow(1px 1px 1px black);
+  color: var(--gold);
+}
+
 .scoreboard {
   grid-area: 2/1;
   display: grid;
@@ -99,6 +118,7 @@
   grid-auto-flow: column;
   align-items: center;
   gap: 17px;
+  margin-top: 10px;
 }
 
 .score-panel {

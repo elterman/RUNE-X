@@ -1,13 +1,21 @@
 import { useAtom } from 'jotai';
 import Player from './Player';
-import { a_my_player, a_scores } from './atoms';
+import { a_my_player, a_opp_alert, a_scores, a_solo } from './atoms';
 import { COLOR1, COLOR2 } from './const';
 
 const Scoreboard = () => {
     const [myPlayer] = useAtom(a_my_player);
     const [scores] = useAtom(a_scores);
+    const [solo] = useAtom(a_solo);
+    const [oppAlert] = useAtom(a_opp_alert);
     const score1 = scores[0];
     const score2 = scores[1];
+
+    if (solo || oppAlert) {
+        return <div className="scoreboard">
+            <Player player={1} style={{ gridArea: '1/3' }} />
+        </div>;
+    }
 
     const swap = myPlayer === 2;
     const s1 = swap ? score2 : score1;
