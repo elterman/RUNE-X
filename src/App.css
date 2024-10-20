@@ -1,3 +1,9 @@
+:root {
+  --app-color: #345678;
+  --app-color-c0: #345678c0;
+  --gold: #ffe4ad;
+}
+
 .App {
   display: grid;
   height: 100%;
@@ -7,7 +13,7 @@
   user-select: none;
   -webkit-tap-highlight-color: #0000;
   color: #fff;
-  background: #345678;
+  background: var(--app-color);
   box-sizing: border-box;
 }
 
@@ -77,7 +83,7 @@
 }
 
 .gradient-gold {
-  background: -webkit-linear-gradient(-90deg, #fff -100%, #FFE4AD 60%);
+  background: -webkit-linear-gradient(-90deg, #fff -100%, #ffe4ad 60%);
 }
 
 .gradient-text {
@@ -148,7 +154,7 @@
   display: grid;
   place-items: center;
   z-index: 1;
-  background: linear-gradient(180deg, #56BF8B, #468235 50%);
+  background: linear-gradient(180deg, #56bf8b, #468235 50%);
   border-radius: 50%;
   width: 22px;
   height: 22px;
@@ -174,6 +180,12 @@
   width: 100%;
   overflow: hidden;
   transform: translateY(-1px);
+}
+
+.board {
+  grid-area: 3/1;
+  display: grid;
+  place-self: center;
 }
 
 .opp-alert {
@@ -206,7 +218,11 @@
   display: grid;
   place-content: center;
   color: white;
-  background: -webkit-linear-gradient(-90deg, #fff -400%, #345678c0 100%);
+  background: -webkit-linear-gradient(
+    -90deg,
+    #fff -400%,
+    var(--app-color-c0) 100%
+  );
   box-sizing: border-box;
   text-shadow: 2px 2px 2px #000;
   border: 2px solid white;
@@ -239,4 +255,23 @@
   align-items: center;
   gap: 15px;
   justify-content: start;
+}
+
+.stats-panel {
+  grid-area: 1/1;
+  place-self: start center;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 15px;
+  align-items: center;
+  font-size: 16px;
+}
+
+.stats-panel-label {
+  color: #b0b0b0;
+}
+
+.stats-panel-value {
+  filter: drop-shadow(1px 1px 1px black);
+  color: var(--gold);
 }

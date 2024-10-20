@@ -4,15 +4,17 @@ import { a_overlay } from './atoms';
 import Prompts from './Prompts';
 import Toolbar from './Toolbar';
 import Scoreboard from './Scoreboard';
+import Board from './Board';
+import StatsPanel from './Stats Panel';
 
 const GamePage = () => {
     const [overlay] = useAtom(a_overlay);
     const opacity = overlay ? 0 : 1;
 
     return <motion.div className='game-page' animate={{ opacity }} transition={{ duration: opacity ? 0.3 : 0 }}>
-        <div></div>
+        <StatsPanel/>
         <Scoreboard />
-        <div></div>
+        <Board />
         <Prompts />
         <Toolbar />
     </motion.div>;

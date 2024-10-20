@@ -6,7 +6,7 @@ import { isOnMobile } from './utils';
 import useLang from './useLang';
 
 const PromptPanel = (props) => {
-    const { labels, onClick, show, style, buttonStyle, pulse, delay = 0 } = props;
+    const { id, labels, onClick, show, style, buttonStyle, pulse, delay = 0 } = props;
 
     const Button = (props) => {
         const { label, index } = props;
@@ -25,7 +25,7 @@ const PromptPanel = (props) => {
         </motion.div>;
     };
 
-    return <motion.div className='prompt-panel' animate={{ opacity: show ? 1 : 0, transform: `scale(${show ? 1 : 0})` }}
+    return <motion.div id={id} className='prompt-panel' animate={{ opacity: show ? 1 : 0, transform: `scale(${show ? 1 : 0})` }}
         transition={{ type: 'spring', damping: 15, delay }} style={{ ...style }}>
         {_.map(labels, (label, i) => <Button key={i} label={label} index={i} />)}
     </motion.div>;

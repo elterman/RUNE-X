@@ -83,14 +83,15 @@ const Prompts = () => {
     const pointerEvents = myPlayer ? 'all' : 'none';
 
     return <>
-        <PromptPanel labels={[overPrompt]} delay={showOver ? 0.5 : 0} onClick={onResponse} show={showOver}
+        <PromptPanel id='pp-over' labels={[overPrompt]} delay={showOver ? 0.5 : 0} onClick={onResponse} show={showOver}
             buttonStyle={{ pointerEvents }} />
-        <PromptPanel labels={[str(solo ? S_START_OVER : S_SURRENDER), X]} onClick={onResponse} show={restart && !resetStats && !oppAlert} />
-        <PromptPanel labels={[str(S_RESET_STATS), X]} onClick={onResponse} show={resetStats} />
-        <PromptPanel labels={[str(`${spectator ? `Player${solo ? '' : 's'}` : 'Opponent'} not ready.`)]}
+        <PromptPanel id='pp-restart' labels={[str(solo ? S_START_OVER : S_SURRENDER), X]} onClick={onResponse}
+            show={restart && !resetStats && !oppAlert} />
+        <PromptPanel id='pp-reset-stats' labels={[str(S_RESET_STATS), X]} onClick={onResponse} show={resetStats} />
+        <PromptPanel id='pp-opp-not-ready' labels={[str(`${spectator ? `Player${solo ? '' : 's'}` : 'Opponent'} not ready.`)]}
             show={!oppReady && !oppAlert && !restart && !resize && (!over || spectator)} />
-        <PromptPanel labels={[str(alert)]} show={!!alert} style={alertPanelStyle} buttonStyle={alertButtonStyle} />
-        <PromptPanel labels={SIZES} onClick={onResize} show={resize && !oppAlert} buttonStyle={resizeStyle} />
+        <PromptPanel id='pp-alert' labels={[str(alert)]} show={!!alert} style={alertPanelStyle} buttonStyle={alertButtonStyle} />
+        <PromptPanel id='pp-sizes' labels={SIZES} onClick={onResize} show={resize && !oppAlert} buttonStyle={resizeStyle} />
     </>;
 };
 
